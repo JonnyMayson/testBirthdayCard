@@ -11,12 +11,15 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -34,7 +37,7 @@ class MainActivity : ComponentActivity() {
                     modifier = Modifier.fillMaxSize(),
                     color = MaterialTheme.colorScheme.background
                 ) {
-                    GreetingImage(message = "Happy Birthday Zhanibek!", from = "Aiym congrats you")
+                    GreetingImage("Happy Birthday Zhanibek!", "Aiym congrats you")
                 }
             }
         }
@@ -49,7 +52,7 @@ fun GreetingText(message: String, from: String,  modifier: Modifier = Modifier){
     ){
         Text(
             text = message,
-            fontSize = 85.sp,
+            fontSize = 80.sp,
             lineHeight = 100.sp,
             textAlign = TextAlign.Center
         )
@@ -69,7 +72,11 @@ fun GreetingImage(message: String, from: String, modifier: Modifier = Modifier){
     Box{
         Image(
             painter = image,
-            contentDescription = null
+            contentDescription = null,
+            contentScale = ContentScale.FillBounds,
+            modifier = Modifier
+                .clip(RoundedCornerShape(25.dp)),
+            alpha = 0.8F
         )
         GreetingText(
             message = message,
